@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5-Year Financial Plan (OpEx/CapEx)</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div>
+          <h1>5‑Year Financial Plan</h1>
+          <p class="subtitle">
+            Enter Year 1 OpEx/CapEx and an annual % change. The table and chart update automatically.
+          </p>
+        </div>
+      </header>
+
+      <section class="card grid">
+        <div class="field">
+          <label for="year1Opex">1st year OpEx ($)</label>
+          <input id="year1Opex" type="number" inputmode="decimal" min="0" step="100" value="18000" />
+          <div class="hint">Example: software subscriptions + support + training refreshers.</div>
+        </div>
+
+        <div class="field">
+          <label for="year1Capex">1st year CapEx ($)</label>
+          <input id="year1Capex" type="number" inputmode="decimal" min="0" step="100" value="5000" />
+          <div class="hint">Example: one-time setup, initial devices, onboarding time.</div>
+        </div>
+
+        <div class="field">
+          <label for="annualChangePct">Annual change (%)</label>
+          <input id="annualChangePct" type="number" inputmode="decimal" step="0.25" value="5" />
+          <div class="hint">Applied to both OpEx and CapEx each year after Year 1.</div>
+        </div>
+
+        <div class="actions">
+          <button id="resetBtn" class="btn secondary" type="button">Reset example</button>
+          <button id="copyBtn" class="btn" type="button">Copy table (CSV)</button>
+          <div id="toast" class="toast" role="status" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="sectionTitleRow">
+          <h2>Cash flow table</h2>
+          <div class="pill">Years 1–5</div>
+        </div>
+
+        <div class="tableWrap" role="region" aria-label="Cash flow table" tabindex="0">
+          <table>
+            <thead>
+              <tr>
+                <th>Year</th>
+                <th class="num">OpEx ($)</th>
+                <th class="num">CapEx ($)</th>
+                <th class="num">Total ($)</th>
+                <th class="num">Cumulative ($)</th>
+              </tr>
+            </thead>
+            <tbody id="cashflowBody"></tbody>
+            <tfoot>
+              <tr>
+                <td><strong>5‑year total</strong></td>
+                <td id="totalOpex" class="num"></td>
+                <td id="totalCapex" class="num"></td>
+                <td id="totalAll" class="num"></td>
+                <td class="num">—</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="sectionTitleRow">
+          <h2>Chart</h2>
+          <div class="pill">x = dollars, y = year</div>
+        </div>
+        <div class="chartWrap">
+          <canvas id="planChart" aria-label="Dollars by year chart" role="img"></canvas>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Assumptions (for ROI narrative)</h2>
+        <p class="muted">
+          This page focuses on costs (OpEx/CapEx). For ROI, document benefits separately (e.g., productivity gains,
+          reduced rework, faster delivery). See <code>README.md</code> for an example 5‑year OPEX/CAPEX/ROI estimate and
+          justified assumptions you can adapt.
+        </p>
+      </section>
+
+      <footer class="footer">
+        <span>Static app: open <code>index.html</code> in your browser.</span>
+      </footer>
+    </div>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
